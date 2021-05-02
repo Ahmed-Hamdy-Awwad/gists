@@ -22,8 +22,17 @@ class Search extends React.Component {
 			res.data.forEach((g) => {
 				axios.get(g.forks_url).then((resp) => {
 					let length = resp.data.length;
+					let filesKeys = Object.keys(g.files);
 					let last3Forks = resp.data.splice(length - 3, length - 1);
-					this.setState({data: this.state.data.concat({id: g.id, description: g.description, last3Forks: last3Forks})});
+					this.setState({
+						data: this.state.data.concat({
+							id: g.id,
+							files: g.files,
+							keys: filesKeys,
+							last3Forks: last3Forks,
+							description: g.description,
+						}),
+					});
 				});
 			});
 		});
@@ -33,8 +42,9 @@ class Search extends React.Component {
 		return (
 			<div className="app">
 				<div>
-					<label>Search Here</label>
-					<input onChange={this.getSearchValue}></input>
+					<label className="lable">Enter a user name to get his / her public gists</label>
+					<br></br>
+					<input onChange={this.getSearchValue} className="input"></input>
 					<button onClick={this.getUserGists}>Search</button>
 					{this.state.data.map((gist, index) => {
 						return <GistCard gist={gist} key={index} />;
