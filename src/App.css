@@ -3,8 +3,32 @@
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	/* align-items: center; */
 	/* justify-content: center; */
 	font-size: calc(10px + 2vmin);
-	color: white;
+	/* color: white; */
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto auto auto auto;
+	grid-gap: 10px;
+	background-color: #2196f3;
+	padding: 10px;
+}
+
+.grid-container > div {
+	background-color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+	padding: 20px 0;
+	font-size: 30px;
+}
+
+.extended {
+	grid-column-start: 4;
+	grid-column-end: 7;
+}
+
+.card {
+	margin-top: 50px;
 }
